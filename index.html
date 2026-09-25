@@ -10,7 +10,7 @@
   :root{
     --ink:#16241F; --ink-soft:#5D6F68;
     --accent:#1C7A6B; --paper:#FFFFFF; --paper-deep:#F1F6F3;
-    --line: rgba(22,36,31,0.14);
+    --line: rgba(22,36,31,0.14); --radius:9px;
     box-sizing:border-box;
     padding-top:env(safe-area-inset-top,0px);
     padding-bottom:env(safe-area-inset-bottom,0px);
@@ -25,128 +25,126 @@
     --ink:#E9EFEC; --ink-soft:#9FB0A9; --accent:#4FC3AE;
     --paper:#0F1613; --paper-deep:#161F1B; --line: rgba(233,239,236,0.16);
   }
-  html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;}
+  html{scroll-padding-top:52px; scroll-behavior:smooth; height:100%;}
   *{box-sizing:border-box;}
   body{
     margin:0; min-height:100%; background:var(--paper); color:var(--ink);
-    font-family:'Urbanist','Noto Sans JP',sans-serif; line-height:1.75;
+    font-family:'Urbanist','Noto Sans JP',sans-serif; line-height:1.7;
   }
   h1,h2{font-family:'Urbanist','Noto Sans JP',sans-serif; font-weight:700;}
   a{color:inherit;}
   .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
 
-  header{ border-bottom:1px solid var(--line); padding:18px 0 16px; background:var(--paper); position:sticky; top:0; z-index:20; }
-  header .wrap{display:flex; justify-content:space-between; align-items:flex-end;}
-  .brand small{display:block; font-size:12px; letter-spacing:.03em; color:var(--ink-soft);}
-  .brand strong{font-size:19px; font-weight:700;}
-  nav{display:flex; gap:18px; font-size:14px;}
+  header{ border-bottom:1px solid var(--line); padding:9px 0; background:var(--paper); position:sticky; top:0; z-index:20; }
+  header .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .brand{ text-decoration:none; line-height:1.05; }
+  .brand small{display:block; font-size:11px; letter-spacing:.02em; color:var(--ink-soft);}
+  .brand strong{display:block; font-size:16px; font-weight:700; margin-top:1px;}
+  nav{display:flex; gap:16px; font-size:13px;}
   nav a{text-decoration:none; padding-bottom:2px; border-bottom:2px solid transparent; cursor:pointer;}
   nav a.active{border-color:var(--accent); color:var(--accent);}
 
-  .hero{background:var(--paper-deep); overflow:hidden; padding:34px 0 20px;}
-  .strip-track{ display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 20px 6px; -webkit-overflow-scrolling:touch; }
+  .hero{background:var(--paper-deep);}
+  .strip-track{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
   .strip-track::-webkit-scrollbar{height:0;}
-  .region-card{
-    flex:0 0 auto; width:220px; height:150px; border-radius:3px;
-    scroll-snap-align:center; position:relative; display:flex; align-items:flex-end;
-    padding:14px; color:#fff; font-weight:600; font-size:18px; background-size:cover;
+  .photo-card{
+    flex:0 0 100%; aspect-ratio:16/9; scroll-snap-align:start;
+    background-size:cover; background-position:center; display:block;
   }
-  .region-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%, rgba(10,16,14,.6));}
-  .region-card span{position:relative; z-index:1;}
-  .dots{display:flex; justify-content:center; gap:7px; margin-top:14px;}
-  .dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
+  .dots{display:flex; justify-content:center; gap:6px; padding:9px 0;}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--line);}
   .dot.on{background:var(--accent);}
 
-  section{padding:34px 0;}
+  section{padding:22px 0;}
   section + section{border-top:1px solid var(--line);}
-  .section-head{display:flex; align-items:baseline; gap:10px; margin-bottom:16px;}
-  .section-head h2{font-size:17px; margin:0;}
-  .section-head .en{font-size:11px; color:var(--ink-soft); letter-spacing:.05em;}
+  .section-head{margin-bottom:12px;}
+  .section-head h2{font-size:16px; margin:0;}
 
-  .info-row{display:flex; gap:14px; padding:11px 0; border-bottom:1px dashed var(--line); font-size:14px; align-items:baseline;}
+  .info-row{display:flex; gap:12px; padding:9px 0; border-bottom:1px dashed var(--line); font-size:13.5px; align-items:baseline;}
   .info-row:last-child{border-bottom:none;}
   .info-row time{color:var(--ink-soft); flex:0 0 auto; font-variant-numeric:tabular-nums;}
-  .tag{font-size:11px; border:1px solid var(--accent); color:var(--accent); padding:1px 7px; border-radius:2px; flex:0 0 auto;}
+  .tag{font-size:10.5px; border:1px solid var(--accent); color:var(--accent); padding:1px 6px; border-radius:20px; flex:0 0 auto;}
   .info-row a{text-decoration:underline; text-underline-offset:3px;}
 
-  .research-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
-  .research-card{ border:1px solid var(--line); padding:26px 10px; text-align:center; text-decoration:none; display:flex; flex-direction:column; gap:6px; align-items:center; transition:border-color .15s; }
+  .research-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:9px;}
+  .research-card{ border:1px solid var(--line); border-radius:var(--radius); padding:14px 8px; text-align:center; text-decoration:none; display:flex; flex-direction:column; gap:4px; align-items:center; justify-content:center; transition:border-color .15s; }
   .research-card:hover{border-color:var(--accent);}
-  .research-card .glyph{font-size:16px; color:var(--accent); font-weight:700; letter-spacing:.02em;}
-  .research-card .ja{font-size:12px; color:var(--ink-soft);}
-  @media (max-width:520px){.research-grid{grid-template-columns:1fr;}}
+  .research-card .glyph{font-size:14px; color:var(--accent); font-weight:700; letter-spacing:.01em;}
+  .research-card .ja{font-size:11px; color:var(--ink-soft);}
+  @media (max-width:520px){.research-grid{grid-template-columns:1fr;} .research-card{flex-direction:row; justify-content:flex-start; padding:11px 14px; gap:8px;}}
 
-  .latest-list a{display:block; font-size:14px; padding:8px 0; text-decoration:none;}
-  .latest-list a:hover{color:var(--accent);}
-  .latest-list .d{color:var(--ink-soft); font-size:12px; margin-left:8px;}
+  .latest-inline{margin-top:14px;}
+  .latest-label{font-size:11px; color:var(--ink-soft); letter-spacing:.04em;}
+  .latest-compact{margin-top:6px;}
+  .latest-compact a{display:flex; justify-content:space-between; gap:10px; font-size:13px; padding:6px 0; text-decoration:none; border-bottom:1px dashed var(--line);}
+  .latest-compact a:last-child{border-bottom:none;}
+  .latest-compact a:hover{color:var(--accent);}
+  .latest-compact .d{color:var(--ink-soft); font-size:11.5px; flex:0 0 auto;}
 
-  .about h1{font-size:26px; margin:36px 0 22px;}
-  .about p{font-size:15px; max-width:34em;}
-  dl.facts{margin-top:28px; font-size:14px; border-top:1px solid var(--line);}
-  dl.facts div{display:flex; gap:18px; padding:10px 0; border-bottom:1px solid var(--line);}
-  dl.facts dt{flex:0 0 92px; color:var(--ink-soft);}
-  .note{font-size:12px; color:var(--ink-soft); margin-top:18px;}
-  .join{ margin-top:30px; display:inline-flex; align-items:center; gap:8px; border:1px solid var(--ink); padding:12px 26px; text-decoration:none; font-size:15px; font-weight:600; transition:background .15s, color .15s; }
+  #about h1{font-size:22px; margin:6px 0 16px;}
+  #about p{font-size:14.5px; max-width:34em;}
+  dl.facts{margin-top:18px; font-size:13.5px; border-top:1px solid var(--line);}
+  dl.facts div{display:flex; gap:16px; padding:8px 0; border-bottom:1px solid var(--line);}
+  dl.facts dt{flex:0 0 84px; color:var(--ink-soft);}
+  .note{font-size:11.5px; color:var(--ink-soft); margin-top:14px;}
+  .join{ margin-top:20px; display:inline-flex; align-items:center; gap:8px; border:1px solid var(--ink); border-radius:var(--radius); padding:10px 22px; text-decoration:none; font-size:14px; font-weight:600; transition:background .15s, color .15s; }
   .join:hover{background:var(--ink); color:var(--paper);}
 
-  footer{padding:26px 0 48px; font-size:12px; color:var(--ink-soft);}
-  .view{display:none;}
-  .view.active{display:block;}
+  footer{padding:18px 0 36px; font-size:11.5px; color:var(--ink-soft);}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="brand"><small>青山学院大学</small><strong>地域研究愛好会</strong></div>
+    <a class="brand" id="brand-link" href="#top"><small>青山学院大学</small><strong>地域研究愛好会</strong></a>
     <nav>
-      <a data-go="home" class="active">Home</a>
+      <a data-go="top" class="active">Home</a>
       <a data-go="about">About</a>
     </nav>
   </div>
 </header>
 
-<div id="home" class="view active">
-  <div class="hero">
-    <div class="strip-track" id="strip"></div>
-    <div class="dots" id="dots"></div>
-  </div>
-  <div class="wrap">
-    <section>
-      <div class="section-head"><h2>Information</h2><span class="en">お知らせ</span></div>
-      <div class="latest-list" id="info-list"></div>
-    </section>
-    <section>
-      <div class="section-head"><h2>Research</h2><span class="en">調べる</span></div>
-      <div class="research-grid" id="research-grid"></div>
-    </section>
-    <section>
-      <div class="section-head"><h2>Latest</h2><span class="en">新着の研究</span></div>
-      <div class="latest-list" id="latest-list"></div>
-    </section>
-  </div>
+<a id="top"></a>
+<div class="hero">
+  <div class="strip-track" id="strip"></div>
+  <div class="dots" id="dots"></div>
 </div>
 
-<div id="about" class="view">
-  <div class="wrap about">
+<div class="wrap">
+  <section>
+    <div class="section-head"><h2>Information</h2></div>
+    <div id="info-list"></div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Research</h2></div>
+    <div class="research-grid" id="research-grid"></div>
+    <div class="latest-inline">
+      <span class="latest-label">Latest</span>
+      <div class="latest-compact" id="latest-list"></div>
+    </div>
+  </section>
+
+  <section id="about">
     <h1 id="about-title"></h1>
     <p id="about-body"></p>
     <dl class="facts" id="about-facts"></dl>
     <p class="note" id="about-note"></p>
     <a class="join" id="about-join" href="#">Join &gt;</a>
-  </div>
+  </section>
 </div>
 
 <footer><div class="wrap" id="footer-text"></div></footer>
 
 <script type="application/json" id="site-data">
 {
-  "regions": [
-    {"name":"東南アジア","color":"#1C7A6B"},
-    {"name":"中央アジア","color":"#2A6FA8"},
-    {"name":"南アメリカ","color":"#3B8F5A"},
-    {"name":"北欧","color":"#2F6F8F"},
-    {"name":"西アジア","color":"#1F8073"}
+  "photos": [
+    {"src":"","href":"#"},
+    {"src":"","href":"#"},
+    {"src":"","href":"#"},
+    {"src":"","href":"#"},
+    {"src":"","href":"#"}
   ],
   "info": [
     {"date":"2026.09.25","tag":"Notice","text":"ホームページを公開いたしました","href":"#about"}
@@ -174,13 +172,15 @@
 
 <script>
 const DATA = JSON.parse(document.getElementById('site-data').textContent);
+const FALLBACK_COLORS = ['#1C7A6B','#2A6FA8','#3B8F5A','#2F6F8F','#1F8073'];
 
 const strip = document.getElementById('strip');
-DATA.regions.forEach(function(r){
-  const d=document.createElement('div');
-  d.className='region-card'; d.style.backgroundColor=r.color;
-  d.innerHTML='<span>' + r.name + '</span>';
-  strip.appendChild(d);
+DATA.photos.forEach(function(p, i){
+  const a = document.createElement('a');
+  a.className='photo-card'; a.href = p.href || '#';
+  if(p.src){ a.style.backgroundImage = 'url(' + p.src + ')'; }
+  else{ a.style.backgroundColor = FALLBACK_COLORS[i % FALLBACK_COLORS.length]; }
+  strip.appendChild(a);
 });
 
 document.getElementById('info-list').innerHTML = DATA.info.map(function(i){
@@ -192,7 +192,7 @@ document.getElementById('research-grid').innerHTML = DATA.research.map(function(
 }).join('');
 
 document.getElementById('latest-list').innerHTML = DATA.latest.map(function(l){
-  return '<a href="' + l.href + '">' + l.title + '<span class="d">' + l.date + '</span></a>';
+  return '<a href="' + l.href + '"><span>' + l.title + '</span><span class="d">' + l.date + '</span></a>';
 }).join('');
 
 document.getElementById('about-title').textContent = DATA.about.title;
@@ -206,40 +206,39 @@ joinEl.href = DATA.about.joinHref;
 joinEl.innerHTML = DATA.about.joinLabel + ' &gt;';
 document.getElementById('footer-text').textContent = DATA.footer;
 
-document.querySelectorAll('nav a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('nav a').forEach(function(a){
+  a.addEventListener('click', function(){
+    document.querySelectorAll('nav a').forEach(function(x){x.classList.remove('active');});
     a.classList.add('active');
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.getElementById(a.dataset.go).classList.add('active');
-    window.scrollTo({top:0});
+    const target = document.getElementById(a.dataset.go);
+    if(target) target.scrollIntoView({behavior:'smooth'});
   });
 });
-document.querySelectorAll('a[href="#about"]').forEach(a=>{
-  a.addEventListener('click',e=>{
+document.querySelectorAll('a[href="#about"]').forEach(function(a){
+  a.addEventListener('click', function(e){
     e.preventDefault();
     document.querySelector('nav a[data-go="about"]').click();
   });
 });
 
 const cards=[...strip.children], dotsEl=document.getElementById('dots');
-cards.forEach((_,i)=>{
+cards.forEach(function(_, i){
   const d=document.createElement('div'); d.className='dot'+(i===0?' on':'');
   dotsEl.appendChild(d);
 });
 const dots=[...dotsEl.children];
-strip.addEventListener('scroll',()=>{
+strip.addEventListener('scroll', function(){
   const center=strip.scrollLeft+strip.clientWidth/2;
   let closest=0,min=Infinity;
-  cards.forEach((c,i)=>{ const d=Math.abs((c.offsetLeft+c.clientWidth/2)-center); if(d<min){min=d;closest=i;} });
-  dots.forEach((d,i)=>d.classList.toggle('on',i===closest));
+  cards.forEach(function(c,i){ const d=Math.abs((c.offsetLeft+c.clientWidth/2)-center); if(d<min){min=d;closest=i;} });
+  dots.forEach(function(d,i){ d.classList.toggle('on', i===closest); });
 });
 let auto=true, idx=0;
-strip.addEventListener('pointerdown',()=>{auto=false;});
+strip.addEventListener('pointerdown', function(){ auto=false; });
 (function tick(){
   if(auto && cards.length){
     idx=(idx+1)%cards.length;
-    strip.scrollTo({left:cards[idx].offsetLeft-14, behavior:'smooth'});
+    strip.scrollTo({left:cards[idx].offsetLeft, behavior:'smooth'});
   }
   setTimeout(tick,3200);
 })();
