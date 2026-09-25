@@ -2,141 +2,247 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>地域研究愛好会 | AGU Area Studies Club</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%231d4ed8'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>地域研究愛好会 | 青山学院大学</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16241F; --ink-soft:#5D6F68;
+    --accent:#1C7A6B; --paper:#FFFFFF; --paper-deep:#F1F6F3;
+    --line: rgba(22,36,31,0.14);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#E9EFEC; --ink-soft:#9FB0A9; --accent:#4FC3AE;
+      --paper:#0F1613; --paper-deep:#161F1B; --line: rgba(233,239,236,0.16);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#E9EFEC; --ink-soft:#9FB0A9; --accent:#4FC3AE;
+    --paper:#0F1613; --paper-deep:#161F1B; --line: rgba(233,239,236,0.16);
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;}
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100%; background:var(--paper); color:var(--ink);
+    font-family:'Urbanist','Noto Sans JP',sans-serif; line-height:1.75;
+  }
+  h1,h2{font-family:'Urbanist','Noto Sans JP',sans-serif; font-weight:700;}
+  a{color:inherit;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+
+  header{ border-bottom:1px solid var(--line); padding:18px 0 16px; background:var(--paper); position:sticky; top:0; z-index:20; }
+  header .wrap{display:flex; justify-content:space-between; align-items:flex-end;}
+  .brand small{display:block; font-size:12px; letter-spacing:.03em; color:var(--ink-soft);}
+  .brand strong{font-size:19px; font-weight:700;}
+  nav{display:flex; gap:18px; font-size:14px;}
+  nav a{text-decoration:none; padding-bottom:2px; border-bottom:2px solid transparent; cursor:pointer;}
+  nav a.active{border-color:var(--accent); color:var(--accent);}
+
+  .hero{background:var(--paper-deep); overflow:hidden; padding:34px 0 20px;}
+  .strip-track{ display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 20px 6px; -webkit-overflow-scrolling:touch; }
+  .strip-track::-webkit-scrollbar{height:0;}
+  .region-card{
+    flex:0 0 auto; width:220px; height:150px; border-radius:3px;
+    scroll-snap-align:center; position:relative; display:flex; align-items:flex-end;
+    padding:14px; color:#fff; font-weight:600; font-size:18px; background-size:cover;
+  }
+  .region-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%, rgba(10,16,14,.6));}
+  .region-card span{position:relative; z-index:1;}
+  .dots{display:flex; justify-content:center; gap:7px; margin-top:14px;}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
+  .dot.on{background:var(--accent);}
+
+  section{padding:34px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; gap:10px; margin-bottom:16px;}
+  .section-head h2{font-size:17px; margin:0;}
+  .section-head .en{font-size:11px; color:var(--ink-soft); letter-spacing:.05em;}
+
+  .info-row{display:flex; gap:14px; padding:11px 0; border-bottom:1px dashed var(--line); font-size:14px; align-items:baseline;}
+  .info-row:last-child{border-bottom:none;}
+  .info-row time{color:var(--ink-soft); flex:0 0 auto; font-variant-numeric:tabular-nums;}
+  .tag{font-size:11px; border:1px solid var(--accent); color:var(--accent); padding:1px 7px; border-radius:2px; flex:0 0 auto;}
+  .info-row a{text-decoration:underline; text-underline-offset:3px;}
+
+  .research-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+  .research-card{ border:1px solid var(--line); padding:26px 10px; text-align:center; text-decoration:none; display:flex; flex-direction:column; gap:6px; align-items:center; transition:border-color .15s; }
+  .research-card:hover{border-color:var(--accent);}
+  .research-card .glyph{font-size:16px; color:var(--accent); font-weight:700; letter-spacing:.02em;}
+  .research-card .ja{font-size:12px; color:var(--ink-soft);}
+  @media (max-width:520px){.research-grid{grid-template-columns:1fr;}}
+
+  .latest-list a{display:block; font-size:14px; padding:8px 0; text-decoration:none;}
+  .latest-list a:hover{color:var(--accent);}
+  .latest-list .d{color:var(--ink-soft); font-size:12px; margin-left:8px;}
+
+  .about h1{font-size:26px; margin:36px 0 22px;}
+  .about p{font-size:15px; max-width:34em;}
+  dl.facts{margin-top:28px; font-size:14px; border-top:1px solid var(--line);}
+  dl.facts div{display:flex; gap:18px; padding:10px 0; border-bottom:1px solid var(--line);}
+  dl.facts dt{flex:0 0 92px; color:var(--ink-soft);}
+  .note{font-size:12px; color:var(--ink-soft); margin-top:18px;}
+  .join{ margin-top:30px; display:inline-flex; align-items:center; gap:8px; border:1px solid var(--ink); padding:12px 26px; text-decoration:none; font-size:15px; font-weight:600; transition:background .15s, color .15s; }
+  .join:hover{background:var(--ink); color:var(--paper);}
+
+  footer{padding:26px 0 48px; font-size:12px; color:var(--ink-soft);}
+  .view{display:none;}
+  .view.active{display:block;}
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <a href="index.html" class="site-logo">
-    <span class="site-logo-text">
-      <span class="site-logo-title">地域研究愛好会</span>
-      <span class="site-logo-sub">AGU AREA STUDIES CLUB</span>
-    </span>
-  </a>
-  <nav class="site-nav">
-    <a href="asia.html">Asia</a>
-    <a href="oceania.html">Oceania</a>
-    <a href="europe.html">Europe</a>
-    <a href="africa.html">Africa</a>
-    <a href="america.html">America</a>
-  </nav>
+<header>
+  <div class="wrap">
+    <div class="brand"><small>青山学院大学</small><strong>地域研究愛好会</strong></div>
+    <nav>
+      <a data-go="home" class="active">Home</a>
+      <a data-go="about">About</a>
+    </nav>
+  </div>
 </header>
 
-<div class="hero">
-  <span class="eyebrow" id="hero-eyebrow">Area Studies</span>
-  <h1 id="hero-title">世界の地域を、学び・比べ・語り合う。</h1>
-  <p id="hero-body">地域研究愛好会は、アジア・オセアニア・ヨーロッパ・アフリカ・アメリカの歴史や社会、文化を比較しながら学ぶサークルです。各地域のページから、メンバーが取り組んでいる研究の一覧を見ることができます。</p>
+<div id="home" class="view active">
+  <div class="hero">
+    <div class="strip-track" id="strip"></div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div class="wrap">
+    <section>
+      <div class="section-head"><h2>Information</h2><span class="en">お知らせ</span></div>
+      <div class="latest-list" id="info-list"></div>
+    </section>
+    <section>
+      <div class="section-head"><h2>Research</h2><span class="en">調べる</span></div>
+      <div class="research-grid" id="research-grid"></div>
+    </section>
+    <section>
+      <div class="section-head"><h2>Latest</h2><span class="en">新着の研究</span></div>
+      <div class="latest-list" id="latest-list"></div>
+    </section>
+  </div>
 </div>
 
-<section>
-  <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;">
-    <h2 style="margin:0;">お知らせ</h2>
-    <span class="eyebrow">NEWS</span>
+<div id="about" class="view">
+  <div class="wrap about">
+    <h1 id="about-title"></h1>
+    <p id="about-body"></p>
+    <dl class="facts" id="about-facts"></dl>
+    <p class="note" id="about-note"></p>
+    <a class="join" id="about-join" href="#">Join &gt;</a>
   </div>
-  <div class="news-box" id="news-list"></div>
-</section>
+</div>
 
-<section style="padding-top:16px;">
-  <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;">
-    <h2 style="margin:0;">サークル概要</h2>
-    <span class="eyebrow">OVERVIEW</span>
-  </div>
-  <div class="overview-card">
-    <p class="lead" id="overview-lead">
-      地域研究愛好会(ASC)では、日本や世界の地域に対する見識を互いに深め、好奇心を刺激しあえるコミュニティの形成を目指します。
-      各々の興味関心に従い、未知の世界を切り拓く意欲がある方を歓迎します。
-    </p>
-    <p class="examples-label">例えば…</p>
-    <div id="overview-examples"></div>
-  </div>
-</section>
+<footer><div class="wrap" id="footer-text"></div></footer>
 
-<section style="padding-top:0;">
-  <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;">
-    <h2 style="margin:0;">活動内容</h2>
-    <span class="eyebrow">ACTIVITIES</span>
-  </div>
+<script type="application/json" id="site-data">
+{
+  "regions": [
+    {"name":"東南アジア","color":"#1C7A6B"},
+    {"name":"中央アジア","color":"#2A6FA8"},
+    {"name":"南アメリカ","color":"#3B8F5A"},
+    {"name":"北欧","color":"#2F6F8F"},
+    {"name":"西アジア","color":"#1F8073"}
+  ],
+  "info": [
+    {"date":"2026.09.25","tag":"Notice","text":"ホームページを公開いたしました","href":"#about"}
+  ],
+  "research": [
+    {"glyph":"Maps","ja":"言語世界地図・民族世界地図","href":"#"},
+    {"glyph":"Areas","ja":"地域別で見る","href":"#"},
+    {"glyph":"Categories","ja":"テーマ別で見る","href":"#"}
+  ],
+  "latest": [
+    {"title":"インドネシア宗教概論","date":"2026.09.25","href":"#"},
+    {"title":"上座部仏教と大乗仏教","date":"2026.09.25","href":"#"}
+  ],
+  "about": {
+    "title":"地域研究愛好会って？",
+    "paragraph":["地域研究を愛する者のためのサークルです。","言語が好き、文化が好き、地理が好き、という方にはピッタリ！","研究対象は外国でも、日本でも、地域は問いません。","必要なのは地域研究への熱意のみ。","どうぞお気軽にお問い合わせください。"],
+    "facts":[{"label":"設立","value":"2026年6月"},{"label":"入会条件","value":"特になし（弊学以外の方の入会も歓迎いたします）"},{"label":"活動日","value":"月2回（不定）"}],
+    "note":"＊本会は非公認サークルです（2026年9月現在）。",
+    "joinLabel":"Join",
+    "joinHref":"#"
+  },
+  "footer":"© 2026 地域研究愛好会, Aoyama Gakuin University"
+}
+</script>
 
-  <div class="pillar-list" id="pillar-list"></div>
+<script>
+const DATA = JSON.parse(document.getElementById('site-data').textContent);
 
-  <div class="extra-box">
-    <p class="extra-label">そのほかにも…</p>
-    <div class="extra-grid" id="extra-grid"></div>
-  </div>
+const strip = document.getElementById('strip');
+DATA.regions.forEach(function(r){
+  const d=document.createElement('div');
+  d.className='region-card'; d.style.backgroundColor=r.color;
+  d.innerHTML='<span>' + r.name + '</span>';
+  strip.appendChild(d);
+});
 
-  <p class="recruit-note" id="recruit-note">
-    具体的な活動内容については検討中につき、アイデアを募集しています。
-    アイデアのある方、あるいは参加希望または活動に興味のある方は、DMまたはキャプションのフォームからお気軽にご連絡ください!
-  </p>
-</section>
+document.getElementById('info-list').innerHTML = DATA.info.map(function(i){
+  return '<div class="info-row"><time>' + i.date + '</time><span class="tag">' + i.tag + '</span><a href="' + i.href + '">' + i.text + '</a></div>';
+}).join('');
 
-<section style="padding-top:0;">
-  <h2>活動地域</h2>
-  <p class="section-lead">興味のある地域のページを開くと、その地域の紹介と、メンバーの研究一覧が見られます。</p>
-  <div class="region-grid">
+document.getElementById('research-grid').innerHTML = DATA.research.map(function(r){
+  return '<a class="research-card" href="' + r.href + '"><span class="glyph">' + r.glyph + '</span><span class="ja">' + r.ja + '</span></a>';
+}).join('');
 
-    <a class="region-card" href="asia.html">
-      <span class="eyebrow">Asia</span>
-      <h3 id="region-card-title-asia">アジア</h3>
-      <p id="region-card-desc-asia">東アジア・東南アジア・南アジアの歴史的背景や現代社会の動きを比較しながら学びます。</p>
-    </a>
+document.getElementById('latest-list').innerHTML = DATA.latest.map(function(l){
+  return '<a href="' + l.href + '">' + l.title + '<span class="d">' + l.date + '</span></a>';
+}).join('');
 
-    <a class="region-card" href="oceania.html">
-      <span class="eyebrow">Oceania</span>
-      <h3 id="region-card-title-oceania">オセアニア</h3>
-      <p id="region-card-desc-oceania">島嶼国家群の文化的多様性と、先住民族の伝統・現代における課題を扱います。</p>
-    </a>
+document.getElementById('about-title').textContent = DATA.about.title;
+document.getElementById('about-body').innerHTML = DATA.about.paragraph.join('<br>');
+document.getElementById('about-facts').innerHTML = DATA.about.facts.map(function(f){
+  return '<div><dt>' + f.label + '</dt><dd>' + f.value + '</dd></div>';
+}).join('');
+document.getElementById('about-note').textContent = DATA.about.note;
+const joinEl = document.getElementById('about-join');
+joinEl.href = DATA.about.joinHref;
+joinEl.innerHTML = DATA.about.joinLabel + ' &gt;';
+document.getElementById('footer-text').textContent = DATA.footer;
 
-    <a class="region-card" href="europe.html">
-      <span class="eyebrow">Europe</span>
-      <h3 id="region-card-title-europe">ヨーロッパ</h3>
-      <p id="region-card-desc-europe">国家間の統合と多様な国民文化の共存という視点から、政治・社会・文化を横断的に学びます。</p>
-    </a>
+document.querySelectorAll('nav a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.getElementById(a.dataset.go).classList.add('active');
+    window.scrollTo({top:0});
+  });
+});
+document.querySelectorAll('a[href="#about"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector('nav a[data-go="about"]').click();
+  });
+});
 
-    <a class="region-card" href="africa.html">
-      <span class="eyebrow">Africa</span>
-      <h3 id="region-card-title-africa">アフリカ</h3>
-      <p id="region-card-desc-africa">多様な民族・言語・歴史を持つ大陸を、植民地史から現代の開発課題まで幅広く扱います。</p>
-    </a>
-
-    <a class="region-card" href="america.html">
-      <span class="eyebrow">America</span>
-      <h3 id="region-card-title-america">アメリカ</h3>
-      <p id="region-card-desc-america">北米・中南米を対象に、移民社会の形成や地域統合、文化的多様性について学びます。</p>
-    </a>
-
-  </div>
-</section>
-
-<section style="padding-top:0;">
-  <div class="join-grid">
-    <div class="join-note">
-      <p id="join-note">
-        今後、本格的な活動開始に向け「プレ定例会」などの実施を予定しています。
-        ぜひ当アカウントをフォローしてお待ちください!
-      </p>
-    </div>
-    <div class="contact-box">
-      <div class="contact-label">CONTACT</div>
-      <div id="contact-list"></div>
-    </div>
-  </div>
-</section>
-
-<div id="custom-sections"></div>
-
-<footer class="site-footer">
-  <span>© 地域研究愛好会 / AGU Area Studies Club</span>
-  <span>TOKYO, JAPAN</span>
-</footer>
-
-<script src="site-data.js"></script>
-<script src="site-render.js"></script>
+const cards=[...strip.children], dotsEl=document.getElementById('dots');
+cards.forEach((_,i)=>{
+  const d=document.createElement('div'); d.className='dot'+(i===0?' on':'');
+  dotsEl.appendChild(d);
+});
+const dots=[...dotsEl.children];
+strip.addEventListener('scroll',()=>{
+  const center=strip.scrollLeft+strip.clientWidth/2;
+  let closest=0,min=Infinity;
+  cards.forEach((c,i)=>{ const d=Math.abs((c.offsetLeft+c.clientWidth/2)-center); if(d<min){min=d;closest=i;} });
+  dots.forEach((d,i)=>d.classList.toggle('on',i===closest));
+});
+let auto=true, idx=0;
+strip.addEventListener('pointerdown',()=>{auto=false;});
+(function tick(){
+  if(auto && cards.length){
+    idx=(idx+1)%cards.length;
+    strip.scrollTo({left:cards[idx].offsetLeft-14, behavior:'smooth'});
+  }
+  setTimeout(tick,3200);
+})();
+</script>
 </body>
 </html>
